@@ -1,8 +1,10 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Build a pokedex with Recoil - Local state management - Part 1
+
+Bienvenue dans le répertoire sur "How to build a pokedex with Recoil". This branch is the part 1 of the project.
 
 ## Available Scripts
 
-In the project directory, you can run:
+This project is based on `create-react-app`, you can use the following scripts :
 
 ### `yarn start`
 
