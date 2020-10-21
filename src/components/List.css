@@ -1,0 +1,44 @@
+.list-item-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-row-gap: 20px;
+  grid-column-gap: 20px;
+  padding: 1em;
+}
+
+.list-item-details {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 3em;
+}
+
+.list-item-details > * {
+  margin-bottom: 1em;
+}
+
+.list-item-image {
+  margin: 0 auto;
+  margin-bottom: 1em;
+  height: 100px;
+}
+
+.list-item-delete-button {
+  background-color: #ffa372;
+}
+
+.list-item-delete-button:hover {
+  opacity: 0.6;
+}
+
+.list-item-edit-button {
+  background-color: #fff;
+  color: #ffa372;
+}
+
+.list-item-edit-button:hover {
+  background-color: #fff;
+  opacity: 0.6;
+}
