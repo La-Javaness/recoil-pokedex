@@ -1,6 +1,6 @@
 ## Build a pokedex with Recoil - Local state management - Part 1
 
-Bienvenue dans le répertoire sur "How to build a pokedex with Recoil". This branch is the part 1 of the project.
+Welcome in the repository "How to build a pokedex with Recoil". This branch is the part 1 of the project.
 
 ## Available Scripts
 
