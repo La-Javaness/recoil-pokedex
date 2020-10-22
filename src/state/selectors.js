@@ -57,6 +57,17 @@ export const deletePokemonInListSelector = selector({
   },
 })
 
+export const addPokemonInListSelector = selector({
+  key: "addPokemonInListSelector",
+  set: ({ set, get }, newValue) => {
+    const list = get(pokemonListAtom)
+
+    const newList = [...list, newValue]
+
+    set(pokemonListAtom, newList)
+  },
+})
+
 export const pokemonListStatsSelector = selector({
   key: "pokemonListStatsSelector",
   get: ({ get }) => {

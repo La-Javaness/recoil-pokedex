@@ -1,14 +1,15 @@
 import React from "react"
 import { useRecoilState, useSetRecoilState } from "recoil"
 
-import { pokemonAtom, pokemonListAtom } from "..//state/atoms"
+import { pokemonAtom } from "..//state/atoms"
+import { addPokemonInListSelector } from "../state/selectors"
 
 const Input = () => {
   const [pokemon, setPokemon] = useRecoilState(pokemonAtom)
-  const setPokemonList = useSetRecoilState(pokemonListAtom)
+  const setPokemonList = useSetRecoilState(addPokemonInListSelector)
 
   const onClick = () => {
-    setPokemonList((oldList) => [...oldList, pokemon])
+    setPokemonList(pokemon)
   }
 
   const onUploadChange = (e) => {
