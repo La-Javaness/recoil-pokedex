@@ -1,14 +1,20 @@
-import React from "react"
-import { useRecoilState, useSetRecoilState } from "recoil"
+import React, { useState } from "react"
+import { useSetRecoilState } from "recoil"
 
-import { pokemonAtom } from "..//state/atoms"
 import { addPokemonInListSelector } from "../state/selectors"
 
 const Input = () => {
-  const [pokemon, setPokemon] = useRecoilState(pokemonAtom)
+  const [pokemon, setPokemon] = useState({
+    name: "",
+    element: null,
+    image: null,
+  })
   const setPokemonList = useSetRecoilState(addPokemonInListSelector)
 
-  const onClick = () => {
+  const onSubmit = (e) => {
+    e.preventDefault()
+
+    setPokemon({ name: "", element: null, image: null })
     setPokemonList(pokemon)
   }
 
@@ -23,13 +29,14 @@ const Input = () => {
   }
 
   return (
-    <div>
+    <form onSubmit={onSubmit}>
       <input
         value={pokemon.name}
         placeholder="Enter a pokemon name"
         onChange={(e) => setPokemon({ ...pokemon, name: e.target.value })}
       />
       <select
+        value={pokemon.element !== null ? pokemon.element : ""}
         onChange={(e) => setPokemon({ ...pokemon, element: e.target.value })}
       >
         <option value="">Choose an element</option>
@@ -38,8 +45,8 @@ const Input = () => {
         <option value="plant">Plant</option>
       </select>
       <input type="file" onChange={onUploadChange} />
-      <button onClick={onClick}>Add to Pokedex</button>
-    </div>
+      <button>Add to Pokedex</button>
+    </form>
   )
 }
 
