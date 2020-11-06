@@ -1,15 +1,6 @@
 import { atom } from "recoil"
 import { SHOW_ALL } from "../enums"
 
-export const pokemonAtom = atom({
-  key: "pokemonAtom",
-  default: {
-    name: "",
-    element: null,
-    image: null,
-  },
-})
-
 export const pokemonNameAtom = atom({
   key: "pokemonNameAtom",
   default: "",
