@@ -1,6 +1,11 @@
 import { atom } from "recoil"
 import { SHOW_ALL } from "../enums"
 
+export const pokemonListUrl = atom({
+  key: "pokemonListUrl",
+  default: `${process.env.REACT_APP_BASE_URL}?limit=10&offset=0`,
+})
+
 export const pokemonNameAtom = atom({
   key: "pokemonNameAtom",
   default: "",

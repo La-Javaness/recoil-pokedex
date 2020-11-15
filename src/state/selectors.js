@@ -1,7 +1,40 @@
-import { selector } from "recoil"
-import { pokemonListAtom, pokemonListFiltersAtom } from "./atoms"
+import { selector, selectorFamily } from "recoil"
+import {
+  pokemonListAtom,
+  pokemonListFiltersAtom,
+  pokemonListUrl,
+} from "./atoms"
 import { SHOW_FIRE, SHOW_PLANT, SHOW_WATER } from "../enums"
 import { replaceItemAtIndex } from "../utils/arrayUtils"
+
+export const fetchPokemonListSelector = selectorFamily({
+  key: "fetchPokemonListSelector",
+  get: () => async ({ get }) => {
+    try {
+      const url = get(pokemonListUrl)
+      console.log(url)
+      const response = await fetch(url)
+      const { count, next, previous, results } = await response.json()
+
+      return { count, next, previous, results }
+    } catch (error) {
+      throw error
+    }
+  },
+})
+
+export const fetchPokemonDetailsSelector = selectorFamily({
+  key: "fetchPokemonDetailsSelector",
+  get: (id) => async ({ get }) => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/${id}`)
+      const data = await response.json()
+      return data
+    } catch (error) {
+      throw error
+    }
+  },
+})
 
 export const pokemonListLengthSelector = selector({
   key: "pokemonListLengthSelector",

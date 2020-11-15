@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Suspense } from "react"
 import "./Pokedex.css"
 
 import Input from "../components/Input"
@@ -15,7 +15,9 @@ const Pokedex = () => {
         <Filters />
       </div>
       <div className="pokedex-list-container">
-        <List />
+        <Suspense fallback={<div>Loading...</div>}>
+          <List />
+        </Suspense>
       </div>
     </div>
   )
