@@ -7,12 +7,12 @@ const Nav = () => {
   return (
     <nav className="nav">
       <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/pokedex">Pokedex</Link>
-        </li>
+        <Link to="/">
+          <li>Home</li>
+        </Link>
+        <Link to="/pokedex">
+          <li>Pokedex</li>
+        </Link>
       </ul>
     </nav>
   )

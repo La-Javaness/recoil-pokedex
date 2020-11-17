@@ -1,7 +1,6 @@
 import React, { Suspense } from "react"
 import { useRecoilValue } from "recoil"
 import { fetchPokemonListSelector } from "../state/selectors"
-
 import Card from "./Card"
 import Loader from "./Loader"
 import Pagination from "./Pagination"
@@ -14,7 +13,6 @@ const List = () => {
     <>
       <div className="list-item-container">
         {pokemonList?.results.map((pokemon) => {
-          console.log(pokemon)
           return (
             <Suspense key={pokemon.url} fallback={<Loader />}>
               <Card key={pokemon.url} pokemon={pokemon} />

@@ -6,6 +6,11 @@ export const pokemonListUrl = atom({
   default: `${process.env.REACT_APP_BASE_URL}?limit=30&offset=0`,
 })
 
+export const pokemonId = atom({
+  key: "pokemonId",
+  default: 1,
+})
+
 export const pokemonNameAtom = atom({
   key: "pokemonNameAtom",
   default: "",

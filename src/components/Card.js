@@ -6,7 +6,6 @@ import { fetchPokemonDetailsSelector } from "../state/selectors"
 import "./Card.css"
 
 const Card = ({ pokemon }) => {
-  console.log(pokemon)
   const id = pokemon.url.split("/")[6]
 
   const pokemonDetails = useRecoilValue(fetchPokemonDetailsSelector(id))
