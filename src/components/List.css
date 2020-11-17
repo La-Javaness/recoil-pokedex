@@ -6,25 +6,6 @@
   padding: 1em;
 }
 
-.list-item-details {
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  padding: 3em;
-}
-
-.list-item-details > * {
-  margin-bottom: 1em;
-}
-
-.list-item-image {
-  margin: 0 auto;
-  margin-bottom: 1em;
-  height: 100px;
-}
-
 .list-item-delete-button {
   background-color: #ffa372;
 }

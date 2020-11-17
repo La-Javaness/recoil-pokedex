@@ -1,30 +1,33 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React, { Suspense } from "react"
 import { useRecoilValue } from "recoil"
 import { fetchPokemonListSelector } from "../state/selectors"
 
-import "./List.css"
+import Card from "./Card"
+import Loader from "./Loader"
 import Pagination from "./Pagination"
+
+import "./List.css"
 
 const List = () => {
   const pokemonList = useRecoilValue(fetchPokemonListSelector())
   return (
-    <div className="list-item-container">
-      {pokemonList?.results.map((item, index) => {
-        const id = item.url.split("/")[6]
-        return (
-          <div className="list-item-details" key={item.name}>
-            <Link to={`/details/${id}`}>{item.name}'s Page</Link>
-            <span>{item.name}</span>
-          </div>
-        )
-      })}
+    <>
+      <div className="list-item-container">
+        {pokemonList?.results.map((pokemon) => {
+          console.log(pokemon)
+          return (
+            <Suspense key={pokemon.url} fallback={<Loader />}>
+              <Card key={pokemon.url} pokemon={pokemon} />
+            </Suspense>
+          )
+        })}
+      </div>
       <Pagination
         count={pokemonList.count}
         next={pokemonList.next}
         previous={pokemonList.previous}
       />
-    </div>
+    </>
   )
 }
 

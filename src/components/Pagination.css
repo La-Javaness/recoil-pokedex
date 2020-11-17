@@ -1,0 +1,22 @@
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1em;
+  justify-content: center;
+}
+
+.pagination-item {
+  padding: 1em;
+  transition: all 0.3s;
+}
+
+.pagination-item:hover {
+  padding: 1em;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.pagination-item-active {
+  background-color: #ffa372;
+  color: #fff;
+}

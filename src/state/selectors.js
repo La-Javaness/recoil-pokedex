@@ -12,7 +12,6 @@ export const fetchPokemonListSelector = selectorFamily({
   get: () => async ({ get }) => {
     try {
       const url = get(pokemonListUrl)
-      console.log(url)
       const response = await fetch(url)
       const { count, next, previous, results } = await response.json()
 
@@ -25,9 +24,22 @@ export const fetchPokemonListSelector = selectorFamily({
 
 export const fetchPokemonDetailsSelector = selectorFamily({
   key: "fetchPokemonDetailsSelector",
-  get: (id) => async ({ get }) => {
+  get: (id) => async () => {
     try {
       const response = await fetch(`${process.env.REACT_APP_BASE_URL}/${id}`)
+      const data = await response.json()
+      return data
+    } catch (error) {
+      throw error
+    }
+  },
+})
+
+export const fetchPokemonAbilitySelector = selectorFamily({
+  key: "fetchPokemonAbilitySelector",
+  get: (url) => async () => {
+    try {
+      const response = await fetch(url)
       const data = await response.json()
       return data
     } catch (error) {

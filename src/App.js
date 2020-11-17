@@ -5,6 +5,7 @@ import Pokedex from "./screens/Pokedex"
 import Home from "./screens/Home"
 import PokemonDetails from "./screens/PokemonDetails"
 import Nav from "./components/Nav"
+import Loader from "./components/Loader"
 
 export default function App() {
   return (
@@ -19,7 +20,7 @@ export default function App() {
             <Home />
           </Route>
           <Route path={`/details/:id`}>
-            <Suspense fallback={<div>Loading ...</div>}>
+            <Suspense fallback={<Loader />}>
               <PokemonDetails />
             </Suspense>
           </Route>

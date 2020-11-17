@@ -1,27 +1,37 @@
 import React, { useState } from "react"
-import { useRecoilCallback } from "recoil"
+import { useSetRecoilState } from "recoil"
 import { pokemonListUrl } from "../state/atoms"
-import { fetchPokemonDetailsSelector } from "../state/selectors"
+
+import "./Pagination.css"
 
 const Pagination = ({ count }) => {
-  const [activePage, setActivePage] = useState(0)
-  const pages = Array.from(Array(count / 10).keys())
+  const pageSize = 30
 
-  const onPageClick = useRecoilCallback(({ snapshot, set }) => (url, page) => {
+  const [activePage, setActivePage] = useState(0)
+  const pages = Array.from(Array(count / pageSize).keys())
+
+  const setPokemonUrl = useSetRecoilState(pokemonListUrl)
+
+  const onPageClick = (url, page) => {
     setActivePage(page)
-    snapshot.getLoadable(fetchPokemonDetailsSelector(url))
-    set(pokemonListUrl, url)
-  })
+    setPokemonUrl(url)
+  }
 
   return (
-    <div>
+    <div className="pagination">
       {pages.map((page) => {
-        const url = `${process.env.REACT_APP_BASE_URL}?limit=10&offset=${
-          page * 10
-        }`
+        const url = `${
+          process.env.REACT_APP_BASE_URL
+        }?limit=${pageSize}&offset=${page * pageSize}`
         return (
-          <div onClick={() => onPageClick(url, page)} key={page}>
-            {page === activePage ? `| ${page + 1} |` : page + 1}
+          <div
+            className={`pagination-item ${
+              page === activePage ? "pagination-item-active" : null
+            }`}
+            onClick={() => onPageClick(url, page)}
+            key={page}
+          >
+            {page + 1}
           </div>
         )
       })}

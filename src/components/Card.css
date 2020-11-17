@@ -1,0 +1,18 @@
+.card {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  height: 250px;
+}
+
+.card > * {
+  margin-bottom: 1em;
+}
+
+.card-image {
+  margin: 0 auto;
+  margin-bottom: 1em;
+  height: 100px;
+}
