@@ -6,6 +6,7 @@ export const fetchPokemonListSelector = selectorFamily({
   get: () => async ({ get }) => {
     try {
       const url = get(pokemonListUrl)
+
       const response = await fetch(url)
       const { count, next, previous, results } = await response.json()
 
