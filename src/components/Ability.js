@@ -1,5 +1,7 @@
 import React from "react"
 import { useRecoilValue } from "recoil"
+import { capitalize } from "lodash"
+
 import { fetchPokemonAbilitySelector } from "../state/selectors"
 
 const Ability = ({ ability }) => {
@@ -12,7 +14,9 @@ const Ability = ({ ability }) => {
 
   return (
     <div>
-      <p>{ability.name}</p>
+      <p>
+        <strong>{capitalize(ability.name)}</strong>
+      </p>
       <ul>
         {englishEffects.map(({ effect }, index) => (
           <li key={index}>{effect}</li>

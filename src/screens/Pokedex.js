@@ -1,7 +1,7 @@
-import React, { Suspense } from "react"
+import React from "react"
+import AsyncWrapper from "../components/AsyncWrapper"
 
 import List from "../components/List"
-import Loader from "../components/Loader"
 
 import "./Pokedex.css"
 
@@ -9,9 +9,9 @@ const Pokedex = () => {
   return (
     <div className="pokedex">
       <div className="pokedex-list-container">
-        <Suspense fallback={<Loader />}>
+        <AsyncWrapper>
           <List />
-        </Suspense>
+        </AsyncWrapper>
       </div>
     </div>
   )

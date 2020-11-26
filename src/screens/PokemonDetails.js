@@ -1,33 +1,43 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import { Link, useParams } from "react-router-dom"
-import { useRecoilCallback, useRecoilValue } from "recoil"
+import { useRecoilCallback, useRecoilState, useRecoilValue } from "recoil"
 
 import Ability from "../components/Ability"
+import { pokemonIdAtom } from "../state/atoms"
 import { fetchPokemonDetailsSelector } from "../state/selectors"
 
 import "./PokemonDetails.css"
 
 const PokemonDetails = () => {
-  let { id } = useParams()
-  const [currentId, setCurrentId] = useState(parseInt(id))
+  const { id } = useParams()
+  const [currentId, setCurrentId] = useRecoilState(pokemonIdAtom(parseInt(id)))
   const pokemonDetails = useRecoilValue(fetchPokemonDetailsSelector(currentId))
 
   useEffect(() => {
     setCurrentId(parseInt(id))
-  }, [id])
+  }, [id, setCurrentId])
 
   const handlePrefetch = useRecoilCallback(
-    ({ snapshot }) => async (direction) => {
+    ({ snapshot, set }) => async (direction) => {
       const id = direction === "next" ? currentId + 1 : currentId - 1
-      await snapshot.getPromise(fetchPokemonDetailsSelector(id))
 
-      setCurrentId(id)
+      // On pre-fetch les data du prochain pokemon que l'on souhaite afficher, j'obtiens les datas avant de lancer le render
+      console.log(
+        "PRE-FETCHING",
+        await snapshot.getPromise(fetchPokemonDetailsSelector(id))
+      )
+      await snapshot.getPromise(fetchPokemonDetailsSelector(id))
+      // Je mets à jour l'ID courant avec le prochain ID souhaité
+      console.log("OLD ID:", currentId, "NEW ID:", id)
+      set(pokemonIdAtom(currentId), id)
     }
   )
 
   const officialArtwork = "official-artwork"
   const frontDefault = "front_default"
   const image = pokemonDetails.sprites.other[officialArtwork][frontDefault]
+
+  console.log("RENDER !", currentId)
 
   return (
     <>
@@ -64,6 +74,7 @@ const PokemonDetails = () => {
           />
         </div>
         <div>
+          <h3>{pokemonDetails.name.toUpperCase()}</h3>
           <ul>
             <li>Height: {pokemonDetails.height}</li>
             <li>Weight: {pokemonDetails.weight}</li>

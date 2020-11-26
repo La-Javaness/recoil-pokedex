@@ -1,22 +1,23 @@
-import React, { Suspense } from "react"
+import React from "react"
 import { useRecoilValue } from "recoil"
 import { fetchPokemonListSelector } from "../state/selectors"
 import Card from "./Card"
-import Loader from "./Loader"
 import Pagination from "./Pagination"
+import AsyncWrapper from "./AsyncWrapper"
 
 import "./List.css"
 
 const List = () => {
-  const pokemonList = useRecoilValue(fetchPokemonListSelector())
+  const pokemonList = useRecoilValue(fetchPokemonListSelector)
+
   return (
     <>
       <div className="list-item-container">
         {pokemonList?.results.map((pokemon) => {
           return (
-            <Suspense key={pokemon.url} fallback={<Loader />}>
+            <AsyncWrapper key={pokemon.url}>
               <Card key={pokemon.url} pokemon={pokemon} />
-            </Suspense>
+            </AsyncWrapper>
           )
         })}
       </div>

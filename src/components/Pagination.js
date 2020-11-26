@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { useSetRecoilState } from "recoil"
-import { pokemonListUrl } from "../state/atoms"
+import { pokemonListUrlAtom } from "../state/atoms"
 
 import "./Pagination.css"
 
@@ -10,7 +10,7 @@ const Pagination = ({ count }) => {
   const [activePage, setActivePage] = useState(0)
   const pages = Array.from(Array(count / pageSize).keys())
 
-  const setPokemonUrl = useSetRecoilState(pokemonListUrl)
+  const setPokemonUrl = useSetRecoilState(pokemonListUrlAtom)
 
   const onPageClick = (url, page) => {
     setActivePage(page)

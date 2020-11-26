@@ -1,11 +1,11 @@
-import { selectorFamily } from "recoil"
-import { pokemonListUrl } from "./atoms"
+import { selectorFamily, selector } from "recoil"
+import { pokemonListUrlAtom } from "./atoms"
 
-export const fetchPokemonListSelector = selectorFamily({
+export const fetchPokemonListSelector = selector({
   key: "fetchPokemonListSelector",
-  get: () => async ({ get }) => {
+  get: async ({ get }) => {
     try {
-      const url = get(pokemonListUrl)
+      const url = get(pokemonListUrlAtom)
 
       const response = await fetch(url)
       const { count, next, previous, results } = await response.json()
@@ -23,6 +23,9 @@ export const fetchPokemonDetailsSelector = selectorFamily({
     try {
       const response = await fetch(`${process.env.REACT_APP_BASE_URL}/${id}`)
       const data = await response.json()
+
+      // Throw an error
+      // return 'foo'
       return data
     } catch (error) {
       throw error

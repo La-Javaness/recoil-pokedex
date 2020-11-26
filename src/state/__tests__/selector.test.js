@@ -49,7 +49,7 @@ describe("selector", () => {
     const initialSnapshot = snapshot_UNSTABLE()
 
     const { count, next, previous, results } = await initialSnapshot.getPromise(
-      fetchPokemonListSelector()
+      fetchPokemonListSelector
     )
 
     expect({ count, next, previous, results }).toMatchObject({
