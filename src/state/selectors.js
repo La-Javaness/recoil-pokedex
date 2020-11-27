@@ -23,9 +23,6 @@ export const fetchPokemonDetailsSelector = selectorFamily({
     try {
       const response = await fetch(`${process.env.REACT_APP_BASE_URL}/${id}`)
       const data = await response.json()
-
-      // Throw an error
-      // return 'foo'
       return data
     } catch (error) {
       throw error

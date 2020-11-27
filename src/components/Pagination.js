@@ -8,7 +8,7 @@ const Pagination = ({ count }) => {
   const pageSize = 30
 
   const [activePage, setActivePage] = useState(0)
-  const pages = Array.from(Array(count / pageSize).keys())
+  const pages = [...Array(Math.ceil(count / pageSize)).keys()]
 
   const setPokemonUrl = useSetRecoilState(pokemonListUrlAtom)
 

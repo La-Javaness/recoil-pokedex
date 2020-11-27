@@ -21,14 +21,7 @@ const PokemonDetails = () => {
     ({ snapshot, set }) => async (direction) => {
       const id = direction === "next" ? currentId + 1 : currentId - 1
 
-      // On pre-fetch les data du prochain pokemon que l'on souhaite afficher, j'obtiens les datas avant de lancer le render
-      console.log(
-        "PRE-FETCHING",
-        await snapshot.getPromise(fetchPokemonDetailsSelector(id))
-      )
       await snapshot.getPromise(fetchPokemonDetailsSelector(id))
-      // Je mets à jour l'ID courant avec le prochain ID souhaité
-      console.log("OLD ID:", currentId, "NEW ID:", id)
       set(pokemonIdAtom(currentId), id)
     }
   )
@@ -36,8 +29,6 @@ const PokemonDetails = () => {
   const officialArtwork = "official-artwork"
   const frontDefault = "front_default"
   const image = pokemonDetails.sprites.other[officialArtwork][frontDefault]
-
-  console.log("RENDER !", currentId)
 
   return (
     <>
